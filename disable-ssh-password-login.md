@@ -25,9 +25,11 @@ Find and set these lines (uncomment if needed):
 
 ```
 PasswordAuthentication no
-ChallengeResponseAuthentication no
-UsePAM no
+KbdInteractiveAuthentication no
+UsePAM yes
 ```
+
+**Note**: For older OpenSSH versions (before 6.2), use `ChallengeResponseAuthentication no` instead of `KbdInteractiveAuthentication no`.
 
 ### Optional but Recommended
 
@@ -61,14 +63,18 @@ For best security practices, use these settings in `/etc/ssh/sshd_config`:
 
 ```
 PasswordAuthentication no
+KbdInteractiveAuthentication no
 PermitRootLogin no
 PubkeyAuthentication yes
+UsePAM yes
 ```
 
 These settings ensure:
 - **PasswordAuthentication no**: Disables password-based login
+- **KbdInteractiveAuthentication no**: Disables keyboard-interactive authentication (use `ChallengeResponseAuthentication no` for older OpenSSH)
 - **PermitRootLogin no**: Prevents direct root login
 - **PubkeyAuthentication yes**: Enables SSH key-based authentication
+- **UsePAM yes**: Keeps PAM enabled for proper account and session management
 
 ## Important Notes
 
