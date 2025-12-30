@@ -11,7 +11,7 @@ Check if you have SSH keys configured:
 ls ~/.ssh/authorized_keys
 ```
 
-If this file doesn't exist or is empty, set up SSH keys first before proceeding.
+If this file doesn't exist or is empty, set up SSH keys first before proceeding. A properly configured file should contain one or more public keys (typically starting with `ssh-rsa`, `ssh-ed25519`, etc.), one per line.
 
 ## Step 1: Edit SSH Configuration
 
@@ -29,7 +29,7 @@ KbdInteractiveAuthentication no
 UsePAM yes
 ```
 
-**Note**: For older OpenSSH versions (before 6.2), use `ChallengeResponseAuthentication no` instead of `KbdInteractiveAuthentication no`.
+**Note**: For older OpenSSH versions (before 6.2), use `ChallengeResponseAuthentication no` instead of `KbdInteractiveAuthentication no`. Check your OpenSSH version with `ssh -V` to determine which directive to use.
 
 ### Optional but Recommended
 
@@ -52,8 +52,10 @@ sudo systemctl restart ssh
 From another terminal window (keep your current session open), try to connect:
 
 ```bash
-ssh user@server-ip
+ssh your-username@your-server-ip
 ```
+
+For example: `ssh john@192.168.1.100`
 
 If no SSH key is configured, login will fail — that's expected and confirms the configuration is working.
 
